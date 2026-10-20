@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#122130" />
+  <meta name="color-scheme" content="light" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23122130'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23e2a273' stroke-width='1.5'/%3E%3Ccircle cx='16' cy='16' r='2' fill='%23e2a273'/%3E%3C/svg%3E" />
+  <meta name="description" content="ChemIntelAnalysis 文献情报汇总平台：PDF 管理、结构化情报、通讯作者追踪、技术栈分类与批判记忆。" />
+  <title>ChemIntelAnalysis · 文献情报工作台</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#/" aria-label="返回总览">
+        <span class="brand-mark" aria-hidden="true"><i></i></span>
+        <span class="brand-text"><strong>ChemIntelAnalysis</strong><small>文献情报工作台</small></span>
+      </a>
+
+      <a class="upload-cta" href="#/upload">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        上传 PDF
+      </a>
+
+      <nav class="main-nav" aria-label="主导航">
+        <a href="#/" data-nav="dashboard">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          <span>研究总览</span>
+        </a>
+        <a href="#/library" data-nav="library">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2.5Z"/><path d="M4 17h14"/><path d="M8 7h6"/></svg>
+          <span>文献库</span><em id="nav-count-articles"></em>
+        </a>
+        <a href="#/authors" data-nav="authors">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M2.8 20c.4-3.5 2.8-5.5 6.2-5.5s5.8 2 6.2 5.5"/><circle cx="17.5" cy="9" r="2.5"/><path d="M16 14.8c3 0 4.9 1.7 5.2 4.4"/></svg>
+          <span>作者雷达</span><em id="nav-count-authors"></em>
+        </a>
+        <a href="#/stacks" data-nav="stacks">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5"/><path d="m3 16.5 9 5 9-5"/></svg>
+          <span>技术栈</span>
+        </a>
+        <a href="#/critiques" data-nav="critiques">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.3 8.3 0 0 1-8.5 8.2 9 9 0 0 1-3.9-.9L3 20l1.3-4.8A8 8 0 0 1 3.2 11 8.3 8.3 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5Z"/><path d="M8 10h8M8 14h5"/></svg>
+          <span>批判记忆</span><em id="nav-count-critiques"></em>
+        </a>
+        <a href="#/settings" data-nav="settings">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.6v-.2h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"/></svg>
+          <span>设置</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-meta">
+        <div class="pulse-row"><span class="status-dot" id="server-dot"></span><span id="server-label">本地服务</span></div>
+        <div class="mini-stats">
+          <div><strong id="nav-stat-articles">—</strong><span>文献</span></div>
+          <div><strong id="nav-stat-critiques">—</strong><span>批判</span></div>
+        </div>
+        <p>数据与 PDF 均保存在本机。</p>
+      </div>
+    </aside>
+
+    <div class="mobile-bar">
+      <button class="icon-btn" id="menu-toggle" aria-label="打开导航">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <a class="mobile-brand" href="#/">ChemIntelAnalysis</a>
+      <a class="icon-btn" href="#/upload" aria-label="上传 PDF">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+      </a>
+    </div>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+
+    <main class="main" id="app" tabindex="-1">
+      <div class="boot-loading">
+        <span class="spinner"></span>
+        <p>正在打开文献情报工作台…</p>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  <div id="modal-root"></div>
+
+  <noscript><p style="padding:2rem;font-family:sans-serif">该平台需要启用 JavaScript。</p></noscript>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

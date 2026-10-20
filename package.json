@@ -1,0 +1,28 @@
+{
+  "name": "chemintelanalysis",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "ChemIntelAnalysis：本地文献情报与 PDF 管理平台（技术栈分类、通讯作者追踪、批判记忆、WebTeX 公式）",
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server.js",
+    "dev": "node --disable-warning=ExperimentalWarning --watch server.js"
+  },
+  "engines": {
+    "node": ">=22.5"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "multer": "^2.4.0",
+    "pdfjs-dist": "^4.10.38",
+    "webtex": "^0.20.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CesareFennec/chem-info-analysis.git"
+  },
+  "homepage": "https://github.com/CesareFennec/chem-info-analysis#readme",
+  "bugs": {
+    "url": "https://github.com/CesareFennec/chem-info-analysis/issues"
+  }
+}
